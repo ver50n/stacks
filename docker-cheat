@@ -1,0 +1,32 @@
+build
+docker-compose build
+
+remove all images
+docker rmi -f $(docker images -a -q)
+
+remove all containers
+docker rm -vf $(docker ps -a -q)
+
+run docker all container
+docker-compose up -d
+
+rebuild only 1 container from image
+docker-compose up -d --build <SERVICE_NAME>
+
+stop one container
+docker kill <CONTAINER_ID>
+docker-compose kill <CONTAINER_ID>
+
+run one container
+event-hub-workspace_event-api
+
+go to terminal
+docker exec -it <CONTAINER_NAME> bash
+
+reload nginx
+nginx -s reload
+
+mysql
+sudo /etc/init.d/mysql start
+sudo /etc/init.d/mysql restart
+sudo /etc/init.d/mysql stop
