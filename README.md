@@ -10,8 +10,8 @@ install in your local machine:
   Create a folder structure such as below : 
   
 workspace<br />
-    ├─ ours<br />
-        ├─ projects<br />
+&nbsp;&nbsp;├─ ours<br />
+&nbsp;&nbsp;&nbsp;&nbsp;├─ projects<br />
 </p>
 
 ## Clone required projects and docker setting
