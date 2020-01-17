@@ -4,9 +4,9 @@ services:
   mydb:
     container_name: mydb
     command: --default-authentication-plugin=mysql_native_password
-    build: ./stacks/mysql
+    build: ./mysql
     environment:
-      MYSQL_DATABASE: event
+      MYSQL_DATABASE: ours
       MYSQL_USER: root
       MYSQL_PASSWORD: root
       MYSQL_ROOT_PASSWORD: root
@@ -15,7 +15,7 @@ services:
     expose:
       - "3306"
     volumes:
-      - ./stacks/mysql/mysql_data:/var/lib/mysql
+      - ./mysql/mysql_data:/var/lib/mysql
     restart: always
     networks:
       - boilerplate-network
@@ -23,14 +23,14 @@ services:
   php74:
     container_name: php74
     build:
-      context: ./stacks/php7.4
+      context: ./php7.4
       dockerfile: Dockerfile
     ports:
       - 80:80
       - 443:443
     volumes:
       - ./projects/:/var/www/html
-      - ./stacks/php7.4/conf:/etc/httpd/conf/extra
+      - ./php7.4/conf:/etc/httpd/conf/extra
     depends_on:
       - mydb
     links:
