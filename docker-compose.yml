@@ -1,15 +1,14 @@
-version: "3"
+version: "3.3"
 
 services:
-  mydb:
-    container_name: mydb
+  wagokorodb:
+    container_name: wagokorodb
     command: --default-authentication-plugin=mysql_native_password
     build: ./mysql
     environment:
-      MYSQL_DATABASE: ours
-      MYSQL_USER: root
-      MYSQL_PASSWORD: root
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: wagokoro
+      MYSQL_PASSWORD: wagokoro
+      MYSQL_ROOT_PASSWORD: wagokoro
     ports:
       - "3306:3306"
     expose:
@@ -26,21 +25,16 @@ services:
       context: ./php8
       dockerfile: Dockerfile
     ports:
-      - 80:80
+      - 89:89
       - 90:90
       - 91:91
-      - 92:92
-      - 443:443
-      - 444:444
-      - 445:445
-      - 446:446
     volumes:
       - ./../projects/:/var/www/html
       - ./php8/conf:/etc/httpd/conf/extra
     depends_on:
-      - mydb
+      - wagokorodb
     links:
-      - mydb
+      - wagokorodb
     networks:
       - boilerplate-network
     tty: true

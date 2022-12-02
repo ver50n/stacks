@@ -36,10 +36,10 @@ RUN php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" &&
 
 RUN git clone --depth=1 --recursive https://github.com/kjdev/apache-mod-brotli.git
 RUN cd apache-mod-brotli && \
-    ./autogen.sh && \
-    ./configure && \
-    make && \
-    cp .libs/mod_brotli.so /usr/lib64/httpd/modules/mod_brotli.so -fv
+   ./autogen.sh && \
+   ./configure && \
+   make && \
+   cp .libs/mod_brotli.so /usr/lib64/httpd/modules/mod_brotli.so -fv
 
 RUN curl -sL https://rpm.nodesource.com/setup_16.x | bash - 
 RUN yum install -y nodejs 
@@ -56,4 +56,4 @@ COPY ./conf/php.ini /etc/php.ini
 COPY ./conf/sites-enabled /etc/httpd/conf/sites-enabled
 COPY ./conf/key /etc/httpd/key
 
-WORKDIR /var/www/html/wagokoro
+WORKDIR /var/www/html
